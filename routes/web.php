@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KegiatanController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard');
 });
 
 Route::get('/register', [AuthController::class, 'showRegister']);
@@ -25,7 +26,7 @@ Route::middleware(['auth'])->group(function () {
         return view('dashboard');
     })->middleware('auth');
 
-    // Route::resource('kegiatan', KegiatanController::class);
+    Route::resource('kegiatan', KegiatanController::class);
     // Route::resource('peserta', PesertaController::class);
     // Route::resource('anggota', AnggotaController::class);
     // dst...
