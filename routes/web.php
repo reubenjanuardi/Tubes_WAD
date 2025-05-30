@@ -29,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('kegiatan', KegiatanController::class);
     // Route::resource('peserta', PesertaController::class);
-    Route::resource('peserta', PesertaController::class);->parameters([
+    Route::resource('peserta', PesertaController::class)->parameters([
     'peserta' => 'peserta'
     ]);
     // Route::resource('anggota', AnggotaController::class);
