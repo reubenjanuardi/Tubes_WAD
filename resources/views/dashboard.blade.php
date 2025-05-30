@@ -19,7 +19,11 @@
 
     <!-- Content -->
     <div class="p-6">
-        <h2 class="text-2xl font-bold mb-4 text-gray-800">Selamat datang, {{ Auth::user()->name }}!</h2>
+        @if(Auth::check())
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Selamat datang, {{ Auth::user()->name }}</h2>
+        @else
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Selamat datang, Pengguna</h2>
+        @endif
         <p class="text-gray-600">Ini adalah halaman utama dashboard aplikasi manajemen kegiatan UKM.</p>
 
         <!-- Contoh Navigasi ke Fitur -->
