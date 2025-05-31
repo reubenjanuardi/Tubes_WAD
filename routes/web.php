@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\PesertaController;
+use App\Http\Controllers\KeuanganController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,8 +30,13 @@ Route::middleware(['auth'])->group(function () {
     })->middleware('auth');
 
     // Route::resource('kegiatan', KegiatanController::class);
+    Route::resource('kegiatan', KegiatanController::class);
     // Route::resource('peserta', PesertaController::class);
+    Route::resource('peserta', PesertaController::class)->parameters([
+        'peserta' => 'peserta'
+    ]);
     // Route::resource('anggota', AnggotaController::class);
     // dst...
+    Route::resource('/keuangan', KeuanganController::class);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
