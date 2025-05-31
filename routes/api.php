@@ -8,7 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 Route::get('/keuangan', [KeuanganApiController::class, 'index']);
-Route::get('/keuangan/{id}', [KeuanganApiController::class, 'store']);
+Route::post('/keuangan', [KeuanganApiController::class, 'store']);
 Route::get('/keuangan/{id}', [KeuanganApiController::class, 'show']);
-Route::get('/keuangan/{id}', [KeuanganApiController::class, 'update']);
-Route::get('/keuangan/{id}', [KeuanganApiController::class, 'destroy']);
+Route::put('/keuangan/{id}', [KeuanganApiController::class, 'update']);
+Route::delete('/keuangan/{id}', [KeuanganApiController::class, 'destroy']);
