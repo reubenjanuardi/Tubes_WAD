@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nim');
             $table->string('email');
             $table->string('no_hp');
-            $table->string('kegiatan');
+            $table->string('status')->default('Pending');
             $table->date('tanggal_daftar')->nullable();
             $table->timestamps();
         });
