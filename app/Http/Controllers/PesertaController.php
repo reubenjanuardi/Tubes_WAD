@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PesertaController extends Controller
 {
     /**
-     * Tampilkan daftar peserta.
+     * Menampilkan daftar peserta
      */
     public function index()
     {
@@ -17,7 +17,7 @@ class PesertaController extends Controller
     }
 
     /**
-     * Tampilkan form untuk membuat peserta baru.
+     * Menampilkan form membuat peserta baru
      */
     public function create()
     {
@@ -25,7 +25,7 @@ class PesertaController extends Controller
     }
 
     /**
-     * Simpan peserta baru ke dalam database.
+     * Simpan peserta baru ke database
      */
     public function store(Request $request)
     {
@@ -34,7 +34,6 @@ class PesertaController extends Controller
             'nim' => 'required',
             'email' => 'required|email',
             'no_hp' => 'required',
-            'kegiatan' => 'required',
         ]);
 
         Peserta::create([
@@ -42,7 +41,7 @@ class PesertaController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
-            'kegiatan' => $request->kegiatan,
+            'status' => 'Pending', 
             'tanggal_daftar' => now(),
         ]);
 
@@ -51,7 +50,7 @@ class PesertaController extends Controller
     }
 
     /**
-     * Tampilkan detail peserta 
+     * Menampilkan detail peserta
      */
     public function show(Peserta $peserta)
     {
@@ -59,7 +58,7 @@ class PesertaController extends Controller
     }
 
     /**
-     * Tampilkan form edit peserta.
+     * Menampilkan form edit peserta
      */
     public function edit(Peserta $peserta)
     {
@@ -67,7 +66,7 @@ class PesertaController extends Controller
     }
 
     /**
-     * Update data peserta.
+     * Update data peserta
      */
     public function update(Request $request, Peserta $peserta)
     {
@@ -76,7 +75,7 @@ class PesertaController extends Controller
             'nim' => 'required',
             'email' => 'required|email',
             'no_hp' => 'required',
-            'kegiatan' => 'required',
+            'status' => 'required|in:Pending,Accepted,Rejected',
         ]);
 
         $peserta->update([
@@ -84,7 +83,7 @@ class PesertaController extends Controller
             'nim' => $request->nim,
             'email' => $request->email,
             'no_hp' => $request->no_hp,
-            'kegiatan' => $request->kegiatan,
+            'status' => $request->status,
         ]);
 
         return redirect()->route('peserta.index')
@@ -92,7 +91,7 @@ class PesertaController extends Controller
     }
 
     /**
-     * Hapus peserta dari database.
+     * Hapus peserta dari database
      */
     public function destroy(Peserta $peserta)
     {

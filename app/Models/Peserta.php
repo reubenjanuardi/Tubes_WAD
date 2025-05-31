@@ -9,16 +9,14 @@ class Peserta extends Model
 {
     use HasFactory;
 
-    
     protected $fillable = [
         'nama',
         'nim',
         'email',
         'no_hp',
-        'kegiatan',
+        'status',
         'tanggal_daftar',
     ];
 
-    
     protected $dates = ['tanggal_daftar'];
 }

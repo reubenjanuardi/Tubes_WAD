@@ -1,5 +1,3 @@
-index blade
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,9 +8,8 @@ index blade
 <body class="bg-light">
 
 <div class="container mt-5">
-    <h1 class="mb-4 text-center">📋 Daftar Peserta UKM</h1>
+    <h1 class="mb-4 text-center"> Daftar Peserta UKM</h1>
 
-    
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -33,7 +30,7 @@ index blade
                         <th>NIM</th>
                         <th>Email</th>
                         <th>No HP</th>
-                        <th>Kegiatan</th>
+                        <th>Status</th>
                         <th>Tanggal Daftar</th>
                         <th>Aksi</th>
                     </tr>
@@ -46,7 +43,15 @@ index blade
                             <td>{{ $peserta->nim }}</td>
                             <td>{{ $peserta->email }}</td>
                             <td>{{ $peserta->no_hp }}</td>
-                            <td>{{ $peserta->kegiatan }}</td>
+                            <td class="text-center">
+                                @if($peserta->status == 'Pending')
+                                    <span class="badge bg-warning text-dark">Pending</span>
+                                @elseif($peserta->status == 'Accepted')
+                                    <span class="badge bg-success">Accepted</span>
+                                @elseif($peserta->status == 'Rejected')
+                                    <span class="badge bg-danger">Rejected</span>
+                                @endif
+                            </td>
                             <td>{{ date('d-m-Y', strtotime($peserta->tanggal_daftar)) }}</td>
                             <td class="text-center">
                                 <a href="{{ route('peserta.edit', $peserta->id) }}" class="btn btn-sm btn-warning">Edit</a>
