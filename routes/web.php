@@ -28,12 +28,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware('auth');
-
     // Route::resource('kegiatan', KegiatanController::class);
     Route::resource('kegiatan', KegiatanController::class);
     // Route::resource('peserta', PesertaController::class);
     Route::resource('peserta', PesertaController::class)->parameters([
-        'peserta' => 'peserta'
+    'peserta' => 'peserta'
     ]);
     // Route::resource('anggota', AnggotaController::class);
     // dst...
