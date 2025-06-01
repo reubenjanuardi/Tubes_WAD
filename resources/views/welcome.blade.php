@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laravel</title>
+    <title>dashboard UKM</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -20,10 +20,6 @@
     <div class="flex flex-col items-center justify-center h-screen text-center">
         <h1 class="text-6xl font-bold text-red-500 mb-4">UKM Tel-U</h1>
         <p class="text-gray-300 text-lg mb-8">Aplikasi Sistem Manajemen UKM.</p>
-        <!-- <div class="space-x-4">
-            <a href="https://laravel.com/docs" class="text-blue-400 hover:underline">Documentation</a>
-            <a href="https://laracasts.com" class="text-blue-400 hover:underline">Laracasts</a>
-        </div> -->
     </div>
 
 </body>
