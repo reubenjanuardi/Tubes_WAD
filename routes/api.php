@@ -18,9 +18,4 @@ Route::put('/kegiatan/{id}', [KegiatanApiController::class, 'update']);
 Route::delete('/kegiatan/{id}', [KegiatanApiController::class, 'destroy']);
 
 Route::apiResource('peserta', PesertaApiController::class);
-
-Route::get('/keuangan', [KeuanganApiController::class, 'index']);
-Route::post('/keuangan', [KeuanganApiController::class, 'store']);
-Route::get('/keuangan/{id}', [KeuanganApiController::class, 'show']);
-Route::put('/keuangan/{id}', [KeuanganApiController::class, 'update']);
-Route::delete('/keuangan/{id}', [KeuanganApiController::class, 'destroy']);
+Route::apiResource('keuangan', KeuanganApiController::class);
