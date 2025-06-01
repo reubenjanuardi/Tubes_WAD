@@ -1,77 +1,63 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Daftar Peserta</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body class="bg-light">
+@extends('layouts.app')
+@section('title', 'Daftar Peserta')
 
-<div class="container mt-5">
-    <h1 class="mb-4 text-center"> Daftar Peserta UKM</h1>
+@section('content')
+<div class="p-6">
+    <h1 class="text-3xl font-bold mb-4 text-center"> Daftar Peserta UKM</h1>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
-    <div class="mb-3 text-end">
-        <a href="{{ route('peserta.create') }}" class="btn btn-primary">+ Tambah Peserta</a>
+    <div class="mb-3 text-end py-2">
+        <a href="{{ route('peserta.create') }}" class="bg-blue-600 text-white px-4 py-2 rounded">+ Tambah Peserta</a>
     </div>
 
-    <div class="card shadow">
-        <div class="card-body">
-            <table class="table table-bordered table-hover">
-                <thead class="table-dark text-center">
-                    <tr>
-                        <th>No</th>
-                        <th>Nama</th>
-                        <th>NIM</th>
-                        <th>Email</th>
-                        <th>No HP</th>
-                        <th>Status</th>
-                        <th>Tanggal Daftar</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($pesertas as $index => $peserta)
-                        <tr>
-                            <td class="text-center">{{ $index + 1 }}</td>
-                            <td>{{ $peserta->nama }}</td>
-                            <td>{{ $peserta->nim }}</td>
-                            <td>{{ $peserta->email }}</td>
-                            <td>{{ $peserta->no_hp }}</td>
-                            <td class="text-center">
-                                @if($peserta->status == 'Pending')
-                                    <span class="badge bg-warning text-dark">Pending</span>
-                                @elseif($peserta->status == 'Accepted')
-                                    <span class="badge bg-success">Accepted</span>
-                                @elseif($peserta->status == 'Rejected')
-                                    <span class="badge bg-danger">Rejected</span>
-                                @endif
-                            </td>
-                            <td>{{ date('d-m-Y', strtotime($peserta->tanggal_daftar)) }}</td>
-                            <td class="text-center">
-                                <a href="{{ route('peserta.edit', $peserta->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('peserta.destroy', $peserta->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin hapus?')">Hapus</button>
-                                </form>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="8" class="text-center">Belum ada peserta terdaftar.</td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <table class="mb-4 w-full border-collapse">
+            <thead class="bg-black text-white">
+                <tr>
+                    <th class="border py-2">No</th>
+                    <th class="border py-2">Nama</th>
+                    <th class="border py-2">NIM</th>
+                    <th class="border py-2">Email</th>
+                    <th class="border py-2">No HP</th>
+                    <th class="border py-2">Status</th>
+                    <th class="border py-2">Tanggal Daftar</th>
+                    <th class="border py-2">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($pesertas as $index => $peserta)
+                <tr class="text-center bg-white hover:bg-gray-100 border-t">
+                    <td class="border px-4 py-2">{{ $index + 1 }}</td>
+                    <td class="border px-4 py-2">{{ $peserta->nama }}</td>
+                    <td class="border px-4 py-2">{{ $peserta->nim }}</td>
+                    <td class="border px-4 py-2">{{ $peserta->email }}</td>
+                    <td class="border px-4 py-2">{{ $peserta->no_hp }}</td>
+                    <td class="border px-4 py-2">
+                        @if($peserta->status == 'Pending')
+                        <span class="inline-block px-3 py-1 text-sm font-semibold text-yellow-800 bg-yellow-100 rounded">Pending</span>
+                        @elseif($peserta->status == 'Accepted')
+                        <span class="inline-block px-3 py-1 text-sm font-semibold text-green-800 bg-green-100 rounded">Accepted</span>
+                        @elseif($peserta->status == 'Rejected')
+                        <span class="inline-block px-3 py-1 text-sm font-semibold text-red-800 bg-red-100 rounded">Rejected</span>
+                        @endif
+                    </td>
+                    <td class="border px-4 py-2">{{ date('d-m-Y', strtotime($peserta->tanggal_daftar)) }}</td>
+                    <td class="text-center border px-4 py-2">
+                        <a href="{{ route('peserta.edit', $peserta->id) }}" class="inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-1 px-4 rounded">Edit</a>
+                        <form action="{{ route('peserta.destroy', $peserta->id) }}" method="POST" style="display:inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white font-semibold py-1 px-2 rounded" onclick="return confirm('Yakin ingin hapus?')">Hapus</button>
+                        </form>
+                    </td>
+                </tr>
+                @empty
+                <tr>
+                    <td colspan="8" class="text-center">Belum ada peserta terdaftar.</td>
+                </tr>
+                @endforelse
+            </tbody>
+        </table>
     </div>
 </div>
-
-</body>
-</html>
+</div>
+@endsection
