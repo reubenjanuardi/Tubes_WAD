@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KegiatanController;
+use App\Http\Controllers\InventarisController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,7 +28,9 @@ Route::middleware(['auth'])->group(function () {
     })->middleware('auth');
 
     Route::resource('kegiatan', KegiatanController::class);
-    // Route::resource('peserta', PesertaController::class);
+    Route::resource('inventaris', InventarisController::class);
+    //Route::get('inventaris/{inventaris}/edit', [InventarisController::class, 'edit'])->name('inventaris.edit');
+
     // Route::resource('anggota', AnggotaController::class);
     // dst...
     Route::post('/logout', [AuthController::class, 'logout']);
