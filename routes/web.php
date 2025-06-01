@@ -8,6 +8,7 @@ use App\Http\Controllers\InventarisController;
 use App\Http\Controllers\KeuanganController;
 use App\Http\Controllers\AnggotaController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });

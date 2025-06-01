@@ -4,6 +4,7 @@
 <div class="container">
     <h1>Manajemen Kegiatan</h1>
     <a href="{{ route('kegiatan.create') }}" class="btn btn-primary">Tambah Kegiatan</a>
+    
 
     <table class="table mt-3">
         <thead>
