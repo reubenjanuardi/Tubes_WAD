@@ -27,8 +27,8 @@ Route::apiResource('peserta', PesertaApiController::class);
 Route::apiResource('keuangan', KeuanganApiController::class);
 
 // Route untuk Anggota
-Route::get('/anggota', [AnggotaApiController::class, 'index']); // Mendapatkan semua data anggota
-Route::get('/anggota/{id}', [AnggotaApiController::class, 'show']); // Mendapatkan data anggota tertentu
-Route::post('/anggota', [AnggotaApiController::class, 'store']); // Menambahkan anggota baru
-Route::put('/anggota/{id}', [AnggotaApiController::class, 'update']); // Memperbarui data anggota
-Route::delete('/anggota/{id}', [AnggotaApiController::class, 'destroy']); // Menghapus anggota
+Route::get('/anggota', [AnggotaApiController::class, 'index']); 
+Route::get('/anggota/{id}', [AnggotaApiController::class, 'show']); 
+Route::post('/anggota', [AnggotaApiController::class, 'store']);
+Route::put('/anggota/{id}', [AnggotaApiController::class, 'update']); 
+Route::delete('/anggota/{id}', [AnggotaApiController::class, 'destroy']); 
