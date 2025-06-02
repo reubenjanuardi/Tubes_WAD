@@ -3,7 +3,7 @@
 
 @section('content')
 <div class="p-6">
-    <h2 class="text-2xl font-bold mb-4">Tambah Keuangan</h2>
+    <h2 class="text-2xl font-bold mb-4 text-center">Tambah Keuangan</h2>
     <div class="bg-white shadow-md rounded-lg p-6">
         <form method="POST" action="/keuangan">
             @csrf
