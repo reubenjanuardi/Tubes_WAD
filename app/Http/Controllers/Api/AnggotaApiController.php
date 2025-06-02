@@ -46,15 +46,13 @@ class AnggotaApiController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'nim' => 'required|string|max:20|unique:anggota',
+            'no_hp' => 'required|string|max:15',
             'email' => 'required|email|unique:anggota',
             'status' => 'required|in:Aktif,Tidak Aktif',
         ]);
 
-        $anggota = Anggota::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'status' => $request->status,
-        ]);
+        $anggota = Anggota::create($request->all());
 
         return response()->json([
             'success' => true,
@@ -66,10 +64,9 @@ class AnggotaApiController extends Controller
     /**
      * Update an existing anggota.
      */
-        public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $anggota = Anggota::find($id);
-
         if (!$anggota) {
             return response()->json([
                 'success' => false,
@@ -78,11 +75,11 @@ class AnggotaApiController extends Controller
         }
 
         $request->validate([
-            'name' => 'required|string|max:255',
-            'nim' => 'required|string|max:20',
-            'no_hp' => 'required|string|max:15',
-            'email' => 'required|email|unique:anggota,email,' . $anggota->id,
-            'status' => 'required|in:Aktif,Tidak Aktif',
+            'name' => 'sometimes|required|string|max:255',
+            'nim' => 'sometimes|required|string|max:20|unique:anggota,nim,' . $anggota->id,
+            'no_hp' => 'sometimes|required|string|max:15',
+            'email' => 'sometimes|required|email|unique:anggota,email,' . $anggota->id,
+            'status' => 'sometimes|required|in:Aktif,Tidak Aktif',
         ]);
 
         $anggota->update($request->all());
@@ -93,7 +90,6 @@ class AnggotaApiController extends Controller
             'data' => $anggota,
         ], 200);
     }
-
 
     /**
      * Delete a specific anggota.
